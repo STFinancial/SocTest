@@ -1,5 +1,11 @@
 package agent;
 
+/**
+ * Represents the intelligence of an agent.
+ * Intelligence relates to income. More later.
+ * @author Timothy
+ *
+ */
 class Intelligence extends AgentAttribute {
 	
 	private float baseIntelligence;
@@ -13,5 +19,16 @@ class Intelligence extends AgentAttribute {
 	
 	float getBaseIntelligence() {
 		return baseIntelligence;
+	}
+	
+	float getCurrentIntelligence() {
+		return currentIntelligence;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Base Intelligence: " + baseIntelligence + "\t Current Intelligence: " + currentIntelligence);
+		return sb.toString();
 	}
 }
