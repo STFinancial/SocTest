@@ -8,20 +8,20 @@ package agent;
  */
 class Intelligence extends AgentAttribute {
 	
-	private float baseIntelligence;
-	private float currentIntelligence;
+	private double baseIntelligence;
+	private double currentIntelligence;
 	//TODO: Genetic chance at intelligence anomaly
 	
-	Intelligence(float baseIntelligence) {
+	Intelligence(double baseIntelligence) {
 		this.baseIntelligence = baseIntelligence;
 		this.currentIntelligence = baseIntelligence;
 	}
 	
-	float getBaseIntelligence() {
+	double getBaseIntelligence() {
 		return baseIntelligence;
 	}
 	
-	float getCurrentIntelligence() {
+	double getCurrentIntelligence() {
 		return currentIntelligence;
 	}
 

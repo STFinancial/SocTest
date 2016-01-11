@@ -4,7 +4,7 @@ class Satisfaction extends AgentAttribute {
 	
 	
 	
-	private float satisfaction;
+	private double satisfaction;
 
 	@Override
 	public String toString() {

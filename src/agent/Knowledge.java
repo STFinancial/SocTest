@@ -3,7 +3,7 @@ package agent;
 class Knowledge extends AgentAttribute {
 
 	
-	private float knowledge;
+	private double knowledge;
 
 	@Override
 	public String toString() {

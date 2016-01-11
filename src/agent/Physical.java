@@ -3,20 +3,20 @@ package agent;
 class Physical extends AgentAttribute {
 	//TODO: Split this up into attractiveness and fitness?
 	
-	private float basePhysical;
-	private float currentPhysical;
-	private float physicalDecayRate;
+	private double basePhysical;
+	private double currentPhysical;
+	private double physicalDecayRate;
 	
-	Physical(float basePhysical) {
+	Physical(double basePhysical) {
 		this.basePhysical = basePhysical;
 		this.currentPhysical = basePhysical;
 	}
 	
-	float getBasePhysical() {
+	double getBasePhysical() {
 		return basePhysical;
 	}
 	
-	float getCurrentPhysical() {
+	double getCurrentPhysical() {
 		return currentPhysical;
 	}
 

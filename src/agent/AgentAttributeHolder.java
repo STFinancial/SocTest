@@ -18,15 +18,15 @@ final class AgentAttributeHolder {
 	}
 	
 	/* Non-Public Setters called by Builder */
-	void setIntelligence(float baseIntelligence) {
+	void setIntelligence(double baseIntelligence) {
 		intelligence = new Intelligence(baseIntelligence);
 	}
 	
-	void setPhysical(float basePhysical) {
+	void setPhysical(double basePhysical) {
 		physical = new Physical(basePhysical);
 	}
 	
 	/* Non-Public Getters called by Agent. One Liners. */
-	float getCurrentIntelligence() { return intelligence.getCurrentIntelligence(); }
-	float getCurrentPhysical() { return physical.getCurrentPhysical(); }
+	double getCurrentIntelligence() { return intelligence.getCurrentIntelligence(); }
+	double getCurrentPhysical() { return physical.getCurrentPhysical(); }
 }

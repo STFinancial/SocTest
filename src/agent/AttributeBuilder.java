@@ -20,12 +20,12 @@ public final class AttributeBuilder {
 	 * Initializes the {@link Intelligence} of this set of attributes.
 	 * @param baseIntelligence - The base value for this attribute set's intelligence.
 	 */
-	public void setIntelligence(float baseIntelligence) { currentHolder.setIntelligence(baseIntelligence); }
+	public void setIntelligence(double baseIntelligence) { currentHolder.setIntelligence(baseIntelligence); }
 	/**
 	 * Initializes the {@link Physical} of this set of attributes.
 	 * @param basePhysical - The base value for this attribute set's intelligence
 	 */
-	public void setPhysical(float basePhysical) { currentHolder.setPhysical(basePhysical); }
+	public void setPhysical(double basePhysical) { currentHolder.setPhysical(basePhysical); }
 	
 	/* ***** End of Set Methods ***** */
 	
