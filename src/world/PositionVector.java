@@ -17,6 +17,10 @@ final class PositionVector {
 		this.x = x;
 	}
 	
+	static PositionVector getPositionVector(int z, int y, int x) {
+		return new PositionVector(z, y, x);
+	}
+	
 	int getX() { return x; }
 	int getY() { return y; }
 	int getZ() { return z; }

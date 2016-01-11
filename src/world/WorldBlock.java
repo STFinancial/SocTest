@@ -19,6 +19,10 @@ final class WorldBlock extends SimObject {
 	}
 	
 	
+	WorldBlockType getType() {
+		return type;
+	}
+	
 	@Override
 	public String toString() {
 		return new String("Tile of Type: " + type.toString() + " @ " + position.toString());

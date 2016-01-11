@@ -15,12 +15,14 @@ final class WorldConstants {
 	static final int WORLD_Y = 100;
 	static final int WORLD_Z = 100;
 	
+	static final int WORLD_PIXEL_SIZE = 1;
+	
 	static {
 		positionVectors = new PositionVector[WORLD_Z][WORLD_Y][WORLD_X];
 		for (int z = 0; z < WORLD_Z; z++) {
 			for (int y = 0; y < WORLD_Y; y++) {
 				for (int x = 0; x < WORLD_X; x++) {
-					WorldConstants.positionVectors[z][y][x] = new PositionVector(z, y, x);
+					WorldConstants.positionVectors[z][y][x] = PositionVector.getPositionVector(z, y, x);
 				}
 			}
 		}
@@ -36,28 +38,5 @@ final class WorldConstants {
 	 */
 	static PositionVector getPositionVector(int z, int y, int x) {
 		return positionVectors[z][y][x];
-	}
-	
-	
-	/**
-	 * A class that represents a coordinate within the {@link World}.
-	 * Position Vectors are immutable.
-	 * @author Timothy
-	 * @see World
-	 */
-	final class PositionVector {
-		private int z;
-		private int y;
-		private int x;
-		
-		private PositionVector(int z, int y, int x) {
-			this.z = z;
-			this.y = y;
-			this.x = x;
-		}
-		
-		int getX() { return x; }
-		int getY() { return y; }
-		int getZ() { return z; }
 	}
 }

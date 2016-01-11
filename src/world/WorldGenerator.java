@@ -12,9 +12,10 @@ public final class WorldGenerator {
 		for (int z = 0; z < WorldConstants.WORLD_Z; z++) {
 			for (int y = 0; y < WorldConstants.WORLD_Y; y++) {
 				for (int x = 0; x < WorldConstants.WORLD_X; x++) {
-					objectLayer[z][y][x] = new WorldBlock(WorldBlockType.values()[random.nextInt(2)], WorldConstants.getPositionVector(z, y, x))
+					objectLayer[z][y][x] = new WorldBlock(WorldBlockType.values()[random.nextInt(2)], WorldConstants.getPositionVector(z, y, x));
 				}
 			}
 		}
+		return new World(objectLayer);
 	}
 }

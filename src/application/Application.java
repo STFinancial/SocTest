@@ -11,6 +11,8 @@ import agent.AgentFemale;
 import agent.AgentMale;
 import agent.Mater;
 import sex.Sex;
+import world.WorldGenerator;
+import world.WorldPanel;
 
 public class Application {
 	
@@ -23,10 +25,11 @@ public class Application {
 
 	private void guiTest() {
 		JFrame frame = new JFrame();
-		frame.add(new GUI());
+		frame.add(new WorldPanel(WorldGenerator.generateRandomWorld()));
 		frame.setSize(600, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setResizable(false);
+		frame.repaint();
 	}
 }
