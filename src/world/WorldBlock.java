@@ -1,6 +1,7 @@
 package world;
 
 import utility.SimObject;
+import world.WorldConstants.PositionVector;
 
 /**
  * Represents a Minecraft-like block that exists somewhere in the {@link World}.

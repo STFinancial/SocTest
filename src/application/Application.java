@@ -1,6 +1,7 @@
 package application;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -25,11 +26,13 @@ public class Application {
 
 	private void guiTest() {
 		JFrame frame = new JFrame();
-		frame.add(new WorldPanel(WorldGenerator.generateRandomWorld()));
+		WorldPanel worldPanel = new WorldPanel(WorldGenerator.generateRandomWorld());
+		frame.add(worldPanel);
 		frame.setSize(600, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setResizable(false);
 		frame.repaint();
+		worldPanel.runForever();
 	}
 }
