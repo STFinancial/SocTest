@@ -2,6 +2,8 @@ package application;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -57,8 +59,35 @@ public final class GUI {
 		appFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		appFrame.setLocationRelativeTo(null);
 		appFrame.setVisible(true);
+		appFrame.addComponentListener(new FrameListener());
 		appFrame.repaint();
 		
+		
 		world.runForever();
+	}
+	
+	private class FrameListener implements ComponentListener {
+		@Override
+		public void componentResized(ComponentEvent e) {
+			/* TODO: Maintain Aspect Ratio */
+			System.out.println("Frame Resized");
+			
+			/* Maintain Aspect Ratio */
+			int width = appFrame.getWidth();
+			int height = appFrame.getHeight();
+			
+			/* Thinking that we can add mouselistener and only deal with aspect ratio when mouse isn't pressed */
+		}
+
+		@Override
+		public void componentMoved(ComponentEvent e) { return; }
+
+		@Override
+		public void componentShown(ComponentEvent e) { return; }
+
+		/* TODO: Need to make this stop running repaints when hidden */
+		@Override
+		public void componentHidden(ComponentEvent e) { return; }
+		
 	}
 }
