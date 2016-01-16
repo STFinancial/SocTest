@@ -15,24 +15,21 @@ import sex.Sex;
 import world.WorldGenerator;
 import world.WorldPanel;
 
-public class Application {
-	
+/**
+ * The top level class that is at the top of the
+ * hierarchy for classes of this application.
+ * @author Timothy
+ *
+ */
+public final class Application {
+	private GUI gui;
 	
 	public static void main(String[] args) {
 		Application app = new Application();
-		app.guiTest();
-		
+		app.run();
 	}
-
-	private void guiTest() {
-		JFrame frame = new JFrame();
-		WorldPanel worldPanel = new WorldPanel(WorldGenerator.generateRandomWorld());
-		frame.add(worldPanel);
-		frame.setSize(600, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		frame.setResizable(false);
-		frame.repaint();
-		worldPanel.runForever();
+	
+	private void run() {
+		gui = new GUI(this, WorldGenerator.generateRandomWorld());
 	}
 }

@@ -41,10 +41,6 @@ public class WorldPanel extends JPanel {
 		return pixelSize;
 	}
 	
-	public void runForever() {
-		world.runForever();
-	}
-	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

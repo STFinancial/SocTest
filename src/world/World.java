@@ -30,7 +30,7 @@ public final class World extends JComponent {
 		newObjectLayer = new SimObject[WorldConstants.WORLD_Z][WorldConstants.WORLD_Y][WorldConstants.WORLD_X];
 	}
 	
-	void runForever() {
+	public void runForever() {
 		while (true) {
 			try {
 				Thread.sleep(200);

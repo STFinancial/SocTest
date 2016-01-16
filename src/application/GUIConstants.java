@@ -1,5 +1,6 @@
 package application;
 
+/* Not sure I actually want this */
 final class GUIConstants {
 	/** Represents the default width, in pixels, of the panel on which we will display the world */
 	static final int DEFAULT_PANEL_WIDTH = 600;
