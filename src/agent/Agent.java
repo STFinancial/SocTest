@@ -2,6 +2,7 @@ package agent;
 
 import sex.Sex;
 import utility.SimObject;
+import world.PositionVector;
 
 /**
  * The main unit of this fake society.
@@ -17,13 +18,15 @@ public abstract class Agent extends SimObject {
 	
 	/* Independent Attributes */
 	private int age; /* In months */
-	protected Sex sex;
+	private Sex sex;
+	private PositionVector position;
 	
 	/* Agent Attributes */
 	AgentAttributeHolder attributes;
 	
-	Agent() {
+	Agent(Sex sex) {
 		this.age = 0;
+		this.sex = sex;
 	}
 	
 	void setAttributeHolder(AgentAttributeHolder newHolder) {
@@ -52,7 +55,10 @@ public abstract class Agent extends SimObject {
 	/* ***** End Abstract Methods ***** */
 	
 	
-	
+	@Override
+	public void update() {
+		
+	}
 	
 	@Override
 	public String toString() {

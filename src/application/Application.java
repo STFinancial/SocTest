@@ -12,6 +12,7 @@ import agent.AgentFemale;
 import agent.AgentMale;
 import agent.Mater;
 import sex.Sex;
+import world.World;
 import world.WorldGenerator;
 import world.WorldPanel;
 
@@ -30,6 +31,8 @@ public final class Application {
 	}
 	
 	private void run() {
-		gui = new GUI(this, WorldGenerator.generateRandomWorld());
+		World world = WorldGenerator.generateRandomWorld();
+		gui = new GUI(this, world);
+		world.runForever();
 	}
 }

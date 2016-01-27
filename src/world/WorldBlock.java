@@ -1,7 +1,6 @@
 package world;
 
 import utility.SimObject;
-import world.WorldConstants.PositionVector;
 
 /**
  * Represents a Minecraft-like block that exists somewhere in the {@link World}.
@@ -27,5 +26,11 @@ final class WorldBlock extends SimObject {
 	@Override
 	public String toString() {
 		return new String("Tile of Type: " + type.toString() + " @ " + position.toString());
+	}
+
+
+	@Override
+	public void update() {
+		return;
 	}
 }

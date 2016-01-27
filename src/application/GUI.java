@@ -18,8 +18,8 @@ import world.WorldPanel;
  */
 public final class GUI {
 	private final double ASPECT_RATIO = 5 / 3; /* Common European Aspect Ratio */
-	private int GUI_DEFAULT_WIDTH = 1000;
-	private int GUI_DEFAULT_HEIGHT = 600;
+	private int GUI_DEFAULT_WIDTH = 1100;
+	private int GUI_DEFAULT_HEIGHT = 660;
 	private int WORLD_PANEL_DEFAULT_WIDTH = 600;
 	private int WORLD_PANEL_DEFAULT_HEIGHT = 600;
 	
@@ -39,9 +39,9 @@ public final class GUI {
 	
 	private void createAndShowGUI() {
 		/* Create Frames and Panels */
-		appFrame = new JFrame("Soc Test");
+		appFrame = new JFrame("Test");
 		holdingPanel = new JPanel();
-		worldPanel = new WorldPanel(world);
+		worldPanel = new WorldPanel(world, WORLD_PANEL_DEFAULT_WIDTH, WORLD_PANEL_DEFAULT_HEIGHT);
 		
 		/* Configure the JPanel on which the other panels are held */
 		holdingPanel.setSize(new Dimension(GUI_DEFAULT_WIDTH, GUI_DEFAULT_HEIGHT));
@@ -50,8 +50,6 @@ public final class GUI {
 		appFrame.add(holdingPanel);
 		
 		/* Configure the JPanel which displays the World */
-		worldPanel.setSize(new Dimension(WORLD_PANEL_DEFAULT_WIDTH, WORLD_PANEL_DEFAULT_HEIGHT));
-		worldPanel.setPreferredSize(new Dimension(WORLD_PANEL_DEFAULT_WIDTH, WORLD_PANEL_DEFAULT_HEIGHT));
 		holdingPanel.add(worldPanel);
 		
 		/* Add each of the components to the Frame */

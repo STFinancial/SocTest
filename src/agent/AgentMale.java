@@ -6,7 +6,6 @@ public final class AgentMale extends Agent {
 	
 	
 	AgentMale() {
-		super();
-		this.sex = Sex.MALE;
+		super(Sex.MALE);
 	}
 }
