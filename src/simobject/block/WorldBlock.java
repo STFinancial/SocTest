@@ -1,6 +1,8 @@
-package world;
+package simobject.block;
 
-import utility.SimObject;
+import simobject.SimObject;
+import simobject.SimObjectType;
+import world.World;
 
 /**
  * Represents a Minecraft-like block that exists somewhere in the {@link World}.
@@ -9,23 +11,22 @@ import utility.SimObject;
  * @author Timothy
  *
  */
-final class WorldBlock extends SimObject {
+public final class WorldBlock extends SimObject {
 	private WorldBlockType type;
-	private PositionVector position;
 	
-	WorldBlock(WorldBlockType type, PositionVector position) {
+	public WorldBlock(WorldBlockType type) {
+		this.objectType = SimObjectType.BLOCK;
 		this.type = type;
-		this.position = position;
 	}
 	
 	
-	WorldBlockType getType() {
+	public WorldBlockType getType() {
 		return type;
 	}
 	
 	@Override
 	public String toString() {
-		return new String("Tile of Type: " + type.toString() + " @ " + position.toString());
+		return new String("Tile of Type: " + type.toString() + " @ " + getPosition().toString());
 	}
 
 

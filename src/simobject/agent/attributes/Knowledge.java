@@ -1,4 +1,4 @@
-package agent;
+package simobject.agent.attributes;
 
 class Knowledge extends AgentAttribute {
 

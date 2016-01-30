@@ -1,8 +1,15 @@
-package agent;
+package simobject.agent;
+
+import java.util.Random;
 
 import sex.Sex;
-import utility.SimObject;
-import world.PositionVector;
+import simobject.SimObject;
+import simobject.SimObjectType;
+import simobject.agent.attributes.AgentAttributeHolder;
+import world.DisplacementVector;
+import world.WorldEvent;
+import world.WorldEventType;
+import world.World;
 
 /**
  * The main unit of this fake society.
@@ -15,16 +22,19 @@ import world.PositionVector;
  * @see Mater
  */
 public abstract class Agent extends SimObject {
+	private static Random rand = new Random(System.nanoTime());
 	
 	/* Independent Attributes */
+	private World world;
 	private int age; /* In months */
 	private Sex sex;
-	private PositionVector position;
 	
 	/* Agent Attributes */
 	AgentAttributeHolder attributes;
 	
-	Agent(Sex sex) {
+	Agent(World world, Sex sex) {
+		this.objectType = SimObjectType.AGENT;
+		this.world = world;
 		this.age = 0;
 		this.sex = sex;
 	}
@@ -57,7 +67,9 @@ public abstract class Agent extends SimObject {
 	
 	@Override
 	public void update() {
-		
+		/* Pick a z=0 random direction to move in */
+		DisplacementVector dis = new DisplacementVector(0, rand.nextInt(3) - 1, rand.nextInt(3) - 1);
+		world.queueEvent(new WorldEvent(WorldEventType.OBJECT_MOVE, this, dis));
 	}
 	
 	@Override

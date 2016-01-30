@@ -1,10 +1,12 @@
-package agent;
+package simobject.agent.attributes;
+
+import simobject.agent.Agent;
 
 /**
  * This class holds all of the non-simple {@link AgentAttribute Attributes} for a given {@link Agent}.
  * @author Timothy
  */
-final class AgentAttributeHolder {
+public final class AgentAttributeHolder {
 	
 	/* Attributes */
 	Intelligence intelligence;
@@ -27,6 +29,6 @@ final class AgentAttributeHolder {
 	}
 	
 	/* Non-Public Getters called by Agent. One Liners. */
-	double getCurrentIntelligence() { return intelligence.getCurrentIntelligence(); }
-	double getCurrentPhysical() { return physical.getCurrentPhysical(); }
+	public double getCurrentIntelligence() { return intelligence.getCurrentIntelligence(); }
+	public double getCurrentPhysical() { return physical.getCurrentPhysical(); }
 }

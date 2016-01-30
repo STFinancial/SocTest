@@ -1,4 +1,6 @@
-package agent;
+package simobject.agent.attributes;
+
+import simobject.agent.Agent;
 
 public final class AttributeBuilder {
 	private static final AttributeBuilder INSTANCE = new AttributeBuilder();

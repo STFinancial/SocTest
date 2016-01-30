@@ -1,4 +1,4 @@
-package agent;
+package simobject.agent.attributes;
 
 enum AgentState {
 	DEFAULT,

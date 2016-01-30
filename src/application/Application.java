@@ -7,11 +7,11 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Random;
 
-import agent.Agent;
-import agent.AgentFemale;
-import agent.AgentMale;
-import agent.Mater;
 import sex.Sex;
+import simobject.agent.Agent;
+import simobject.agent.AgentFemale;
+import simobject.agent.AgentMale;
+import simobject.agent.Mater;
 import world.World;
 import world.WorldGenerator;
 import world.WorldPanel;

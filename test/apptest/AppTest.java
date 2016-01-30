@@ -7,11 +7,11 @@ import java.util.Random;
 
 import org.junit.Test;
 
-import agent.Agent;
-import agent.AgentFemale;
-import agent.AgentMale;
-import agent.Mater;
 import sex.Sex;
+import simobject.agent.Agent;
+import simobject.agent.AgentFemale;
+import simobject.agent.AgentMale;
+import simobject.agent.Mater;
 import utility.VariationHandler;
 
 public class AppTest {

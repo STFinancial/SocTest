@@ -1,4 +1,4 @@
-package agent;
+package simobject.agent.attributes;
 
 /**
  * Represents the intelligence of an agent.

@@ -1,11 +1,11 @@
-package agent;
+package simobject.agent.attributes;
 
 class Physical extends AgentAttribute {
 	//TODO: Split this up into attractiveness and fitness?
 	
 	private double basePhysical;
 	private double currentPhysical;
-	private double physicalDecayRate;
+	//private double physicalDecayRate;
 	
 	Physical(double basePhysical) {
 		this.basePhysical = basePhysical;
