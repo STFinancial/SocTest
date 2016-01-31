@@ -17,6 +17,7 @@ public final class WorldBlock extends SimObject {
 	public WorldBlock(WorldBlockType type) {
 		this.objectType = SimObjectType.BLOCK;
 		this.type = type;
+		this.renderColor = type.getRenderColor();
 	}
 	
 	

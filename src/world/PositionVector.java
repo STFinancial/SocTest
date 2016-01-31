@@ -65,4 +65,9 @@ public final class PositionVector {
 	public int getX() { return x; }
 	public int getY() { return y; }
 	public int getZ() { return z; }
+	
+	@Override
+	public String toString() {
+		return new String("Position X: " + x + "  Y: " + y + " Z: " + z);
+	}
 }

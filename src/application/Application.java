@@ -1,20 +1,7 @@
 package application;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import java.awt.Dimension;
-import java.util.ArrayList;
-import java.util.Random;
-
-import sex.Sex;
-import simobject.agent.Agent;
-import simobject.agent.AgentFemale;
-import simobject.agent.AgentMale;
-import simobject.agent.Mater;
 import world.World;
 import world.WorldGenerator;
-import world.WorldPanel;
 
 /**
  * The top level class that is at the top of the

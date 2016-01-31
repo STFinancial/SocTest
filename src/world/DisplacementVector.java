@@ -7,7 +7,7 @@ package world;
  * @author Timothy
  *
  */
-public class DisplacementVector {
+public final class DisplacementVector {
 	private int x;
 	private int y;
 	private int z;
@@ -40,4 +40,9 @@ public class DisplacementVector {
 	public int getY() { return y; }
 	/** @return The current z displacement corresponding to this {@link DisplacementVector vector}. */
 	public int getZ() { return z; }
+	
+	@Override
+	public String toString() {
+		return new String("Position X: " + x + "  Y: " + y + " Z: " + z);
+	}
  }

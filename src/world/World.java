@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Random;
 
 import javax.swing.JComponent;
 
@@ -20,20 +19,16 @@ public final class World extends JComponent {
 	private Queue<WorldEvent> eventQueue;
 	
 	/* Arrays in the form Z, Y, X */
-	private SimObject[][][] objectLayer;
+	private ObjectLayer objectLayer;
 	
 	public World() {
-		objectLayer = new SimObject[WorldConstants.WORLD_Z][WorldConstants.WORLD_Y][WorldConstants.WORLD_X];
+		objectLayer = new ObjectLayer();
 		eventQueue = new LinkedList<WorldEvent>();
-//		blockLayer = new WorldBlock[WorldConstants.WORLD_Z][WorldConstants.WORLD_Y][WorldConstants.WORLD_X];
-//		newObjectLayer = new SimObject[WorldConstants.WORLD_Z][WorldConstants.WORLD_Y][WorldConstants.WORLD_X];
 	}
 	
-	World(SimObject[][][] objectLayer) {
+	World(ObjectLayer objectLayer) {
 		this.objectLayer = objectLayer;
 		eventQueue = new LinkedList<WorldEvent>();
-//		this.blockLayer = blockLayer;
-//		newObjectLayer = new SimObject[WorldConstants.WORLD_Z][WorldConstants.WORLD_Y][WorldConstants.WORLD_X];
 	}
 	
 	public void queueEvent(WorldEvent event) { 
@@ -42,19 +37,8 @@ public final class World extends JComponent {
 	
 	public void runForever() {
 		while (true) {
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			objectLayer.update();
 			
-			for (int z = 0; z < WorldConstants.WORLD_Z; z++) {
-				for (int y = 0; y < WorldConstants.WORLD_Y; y++) {
-					for (int x = 0; x < WorldConstants.WORLD_X; x++) {
-						objectLayer[z][y][x].update();
-					}
-				}
-			}
 			while (!eventQueue.isEmpty()) {
 				processEvent(eventQueue.poll());
 			}
@@ -75,17 +59,16 @@ public final class World extends JComponent {
 	
 	/* **** Begin Event Processing Methods **** */
 	private void moveObject(SimObject obj, DisplacementVector dis) {
-		//TODO
+		PositionVector oldPosition = obj.getPosition();
+		PositionVector newPosition = PositionVector.getDestination(oldPosition, dis);
+		objectLayer.clearObjectPosition(obj, oldPosition);
+		objectLayer.setObjectPosition(obj, newPosition);
 	}
 	
 	
 	
 	/* **** End Event Process Methods **** */
 	
-	/* This method is for hacking, not permanent use */
-	void setObject(SimObject obj, PositionVector pv) {
-		objectLayer[pv.getZ()][pv.getY()][pv.getX()] = obj;
-	}
 	
 	void setPanel(WorldPanel panel) {
 		this.worldPanel = panel;
@@ -104,10 +87,12 @@ public final class World extends JComponent {
 		int partY = 0;
 		int partSizeX = 0;
 		int partSizeY = 0;
-//		System.out.println("Painting X: " + Math.floor(startX) + ", " + Math.ceil(endX) + " Y: " + Math.floor(startY) + ", " + Math.ceil(endY));
+		PositionVector pos;
 		for (int y = (int) Math.floor(startY); y < (int) Math.ceil(endY); y++) {
 			for (int x = (int) Math.floor(startX); x < (int) Math.ceil(endX); x++) {
+				/* If our start and end indexes are non-integer */
 				if (x < startX || x + 1 > endX || y < startY || y + 1 > endY) {
+					/* Calculate the how much we need to render */
 					if (x < startX) {
 						partX = 0;
 						partSizeX = (int) ((x + 1 - startX) * blockSize);
@@ -128,27 +113,15 @@ public final class World extends JComponent {
 						partY = (int) ((y - startY) * blockSize);
 						partSizeY = blockSize;
 					}
-					//System.out.println("Getting here: " + partX + ", " + partY + ", " + partSizeX + ", " + partSizeY);
-					if (objectLayer[0][y][x].getObjectType() == SimObjectType.BLOCK && ((WorldBlock) objectLayer[0][y][x]).getType() != WorldBlockType.EMPTY) {
-						
-						g.setColor(Color.BLACK);
-						g.fillRect(partX, partY, partSizeX, partSizeY);
-					}
-					if (objectLayer[0][y][x] != null && objectLayer[0][y][x].getObjectType() == SimObjectType.AGENT) {
-						g.setColor(Color.RED);
-						g.fillRect(partX, partY, partSizeX, partSizeY);
-					}
+					
+					pos = PositionVector.getPositionVector(0, y, x);
+					g.setColor(objectLayer.getObject(pos).getRenderColor());
+					g.fillRect(partX, partY, partSizeX, partSizeY);
 				} else {
-					if (objectLayer[0][y][x].getObjectType() == SimObjectType.BLOCK && ((WorldBlock) objectLayer[0][y][x]).getType() != WorldBlockType.EMPTY) {
-						g.setColor(Color.BLACK);
-						g.fillRect((int) ((x - startX) * blockSize), (int) ((y - startY) * blockSize), blockSize, blockSize);	
-					}
-					if (objectLayer[0][y][x] != null && objectLayer[0][y][x].getObjectType() == SimObjectType.AGENT) {
-						g.setColor(Color.RED);
-						g.fillRect((int) ((x - startX) * blockSize), (int) ((y - startY) * blockSize), blockSize, blockSize);	
-					}
+					pos = PositionVector.getPositionVector(0, y, x);
+					g.setColor(objectLayer.getObject(pos).getRenderColor());
+					g.fillRect((int) ((x - startX) * blockSize), (int) ((y - startY) * blockSize), blockSize, blockSize);
 				}
-				
 			}
 		}
 	}
