@@ -1,6 +1,5 @@
 package world;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -9,14 +8,12 @@ import javax.swing.JComponent;
 
 import simobject.SimObject;
 import simobject.SimObjectType;
-import simobject.block.WorldBlock;
-import simobject.block.WorldBlockType;
 
 public final class World extends JComponent {
 	private static final long serialVersionUID = -6704749150768820789L;
 
 	private WorldPanel worldPanel;
-	private Queue<WorldEvent> eventQueue;
+	private Queue<WorldEvent> eventQueue; /* TODO: Implement a priority queue for these events and assign priority */
 	
 	/* Arrays in the form Z, Y, X */
 	private ObjectLayer objectLayer;
@@ -31,13 +28,16 @@ public final class World extends JComponent {
 		eventQueue = new LinkedList<WorldEvent>();
 	}
 	
-	public void queueEvent(WorldEvent event) { 
-		eventQueue.add(event);
-	}
-	
 	public void runForever() {
 		while (true) {
 			objectLayer.update();
+			
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			while (!eventQueue.isEmpty()) {
 				processEvent(eventQueue.poll());
@@ -45,6 +45,35 @@ public final class World extends JComponent {
 			
 			worldPanel.repaint();
 		}
+	}
+	
+	/* **** Begin Public Getters **** */
+	
+	/**
+	 * Returns the {@link SimObject} at the specified {@link PositionVector}
+	 * if one exists.
+	 * @param pos - The position for which we are trying to fetch the object.
+	 * @return The object at the specified position. If such an object does not exist, we return null.
+	 */
+	SimObject getObject(PositionVector pos) {
+		return objectLayer.getObject(pos);
+	}
+	
+	/**
+	 * Checks to see whether the specified position is occupied with an
+	 * {@link Agent} or not.
+	 * @param pos - The {@link PositionVector position} at which we want to know if there
+	 * is an Agent or not.
+	 * @return True if the specified position is occupied with an Agent, false otherwise.
+	 */
+	boolean isOccupied(PositionVector pos) {
+		return objectLayer.isOccupied(pos);
+	}
+	
+	/* **** End Public Getters **** */
+	
+	public void queueEvent(WorldEvent event) { 
+		eventQueue.add(event);
 	}
 	
 	private void processEvent(WorldEvent event) {
@@ -61,8 +90,11 @@ public final class World extends JComponent {
 	private void moveObject(SimObject obj, DisplacementVector dis) {
 		PositionVector oldPosition = obj.getPosition();
 		PositionVector newPosition = PositionVector.getDestination(oldPosition, dis);
-		objectLayer.clearObjectPosition(obj, oldPosition);
-		objectLayer.setObjectPosition(obj, newPosition);
+		if (!objectLayer.isOccupied(newPosition)) {
+			objectLayer.clearObjectPosition(obj, oldPosition);
+			objectLayer.setObjectPosition(obj, newPosition);
+		}
+		
 	}
 	
 	

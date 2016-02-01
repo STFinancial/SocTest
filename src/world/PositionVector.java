@@ -1,5 +1,7 @@
 package world;
 
+import utility.RandomEngine;
+
 /**
  * A class that represents a coordinate within the {@link World}.
  * Position Vectors are immutable. This should be statically imported.
@@ -17,22 +19,6 @@ public final class PositionVector {
 		this.z = z;
 		this.y = y;
 		this.x = x;
-	}
-	
-	/**
-	 * Returns the {@link PositionVector} that corresponds to the map position that is provided.
-	 * This method assumes the validity of the coordinates that are supplied.
-	 * @param z - The z value of the desired position vector.
-	 * @param y - The y value of the desired position vector.
-	 * @param x - The x value of the desired position vector.
-	 * @return The position vector that corresponds with the supplied coordinates.
-	 */
-	public static PositionVector getPositionVector(int z, int y, int x) {
-		if (positionVectors[z][y][x] != null) {
-			return positionVectors[z][y][x];
-		} else {
-			return (positionVectors[z][y][x] = new PositionVector(z, y, x));
-		}
 	}
 	
 	/**
@@ -61,6 +47,33 @@ public final class PositionVector {
 			return positionVectors[newZ][newY][newX];
 		}
 	}
+	
+	/**
+	 * Returns the {@link PositionVector} that corresponds to the map position that is provided.
+	 * This method assumes the validity of the coordinates that are supplied.
+	 * @param z - The z value of the desired position vector.
+	 * @param y - The y value of the desired position vector.
+	 * @param x - The x value of the desired position vector.
+	 * @return The position vector that corresponds with the supplied coordinates.
+	 */
+	public static PositionVector getPositionVector(int z, int y, int x) {
+		if (positionVectors[z][y][x] != null) {
+			return positionVectors[z][y][x];
+		} else {
+			return (positionVectors[z][y][x] = new PositionVector(z, y, x));
+		}
+	}
+	
+	/**
+	 * Returns a random {@link PositionVector} randomly chosen from the world
+	 * using a uniform distribution.
+	 * @return A random position vector.
+	 */
+	public static PositionVector getRandomPosition() {
+		return positionVectors[RandomEngine.getNextInt(WorldConstants.WORLD_Z)][RandomEngine.getNextInt(WorldConstants.WORLD_Y)][RandomEngine.getNextInt(WorldConstants.WORLD_X)];
+	}
+	
+	
 	
 	public int getX() { return x; }
 	public int getY() { return y; }

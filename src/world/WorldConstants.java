@@ -9,8 +9,8 @@ package world;
  * @see World
  */
 public final class WorldConstants {
-	static final int WORLD_X = 2000;
-	static final int WORLD_Y = 2000;
+	static final int WORLD_X = 75;
+	static final int WORLD_Y = 75;
 	static final int WORLD_Z = 1;
 	
 }

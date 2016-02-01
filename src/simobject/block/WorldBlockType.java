@@ -4,7 +4,6 @@ import java.awt.Color;
 
 public enum WorldBlockType {
 	/* TODO: Decide if there should be a single 'empty" block rather than creating many of them */
-	EMPTY (Color.WHITE), 
 	NON_EMPTY (Color.BLACK);
 	
 	private Color renderColor;
