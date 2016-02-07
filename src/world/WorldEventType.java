@@ -1,5 +1,5 @@
 package world;
 
 public enum WorldEventType {
-	OBJECT_MOVE;
+	ATTEMPT_MATE, OBJECT_MOVE;
 }

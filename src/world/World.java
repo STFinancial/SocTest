@@ -1,13 +1,16 @@
 package world;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import javax.swing.JComponent;
 
+import sex.Sex;
 import simobject.SimObject;
-import simobject.SimObjectType;
+import simobject.agent.Agent;
 
 public final class World extends JComponent {
 	private static final long serialVersionUID = -6704749150768820789L;
@@ -83,12 +86,36 @@ public final class World extends JComponent {
 		case OBJECT_MOVE:
 			moveObject(event.getObject(), event.getDisplacement());
 			break;
+		case ATTEMPT_MATE:
+			/* TODO: I'll want a better way to deal with this soon */
+			attemptMate(event.getObject(), event.getPosition());
+			break;
 		default:
 			break;
 		}
 	}
 	
 	/* **** Begin Event Processing Methods **** */
+	private void attemptMate(SimObject obj, PositionVector pos) {
+		if (!(obj instanceof Agent)) {
+			return;
+		}
+		Agent agent = (Agent) obj;
+		LinkedList<Agent> candidates = new LinkedList<Agent>();
+		for (PositionVector currentPosition: pos.getAdjacentPositions()) {
+			if (objectLayer.isOccupied(currentPosition)) {
+				candidates.add((Agent) objectLayer.getObject(currentPosition));
+			}
+		}
+		Sex agentSex = agent.getSex();
+		Iterator<Agent> it = candidates.iterator();
+		while (it.hasNext()) {
+			if (it.next().getSex() == agentSex) {
+				it.remove();
+			}
+		}
+	}
+	
 	private void moveObject(SimObject obj, DisplacementVector dis) {
 		PositionVector oldPosition = obj.getPosition();
 		PositionVector newPosition = PositionVector.getDestination(oldPosition, dis);

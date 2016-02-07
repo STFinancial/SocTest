@@ -68,6 +68,9 @@ public abstract class Agent extends SimObject {
 	
 	@Override
 	public void update() {
+		/* Check if we're adjacent to someone of the opposite sex */
+		world.queueEvent(new WorldEvent(WorldEventType.ATTEMPT_MATE, this, getPosition()));
+		
 		/* Pick a z=0 random direction to move in */
 		DisplacementVector dis = new DisplacementVector(0, rand.nextInt(3) - 1, rand.nextInt(3) - 1);
 		world.queueEvent(new WorldEvent(WorldEventType.OBJECT_MOVE, this, dis));
