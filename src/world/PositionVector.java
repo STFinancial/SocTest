@@ -77,6 +77,15 @@ public final class PositionVector {
 		return positionVectors[RandomEngine.getNextInt(WorldConstants.WORLD_Z)][RandomEngine.getNextInt(WorldConstants.WORLD_Y)][RandomEngine.getNextInt(WorldConstants.WORLD_X)];
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof PositionVector) {
+			PositionVector v = (PositionVector) o;
+			return v.x == x && v.y == y && v.z == z;
+		}
+		return false;
+	}
+	
 	public LinkedList<PositionVector> getAdjacentPositions() {
 		/* Optimize away having to create this list every single time, perhaps shifting to a graph structure */
 		LinkedList<PositionVector> adj = new LinkedList<PositionVector>();

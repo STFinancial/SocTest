@@ -46,27 +46,6 @@ class ObjectLayer {
 		return objectLayer[pos.getZ()][pos.getY()][pos.getX()];
 	}
 	
-	/**
-	 * Checks to see whether the specified position is occupied with an
-	 * {@link Agent} or not.
-	 * @param pos - The {@link PositionVector position} at which we want to know if there
-	 * is an Agent or not.
-	 * @return True if the specified position is occupied with an Agent, false otherwise.
-	 */
-	boolean isOccupied(PositionVector pos) {
-		return objectLayer[pos.getZ()][pos.getY()][pos.getX()].getObjectType() == SimObjectType.AGENT;
-	}
-	
-	/**
-	 * Assigns the {@link SimObject object} to the specified {@link PositionVector position}
-	 * in both the world and object state.
-	 * @param obj - The object which we want to assign the position of.
-	 * @param pos - The position to assign the object.
-	 */
-	void setObjectPosition(SimObject obj, PositionVector pos) {
-		objectLayer[pos.getZ()][pos.getY()][pos.getX()] = obj;
-		obj.setPosition(pos);
-	}
 	
 	
 	
