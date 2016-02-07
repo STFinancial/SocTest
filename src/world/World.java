@@ -43,6 +43,8 @@ public final class World extends JComponent {
 				processEvent(eventQueue.poll());
 			}
 			
+			/* If we didn't zoom, we should only repaint the places that changed. We can do this by passing a list
+			 * and checking if our camera panned or zoomed. */
 			worldPanel.repaint();
 		}
 	}
