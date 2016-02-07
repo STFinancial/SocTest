@@ -1,5 +1,9 @@
 package world;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import utility.RandomEngine;
 
 /**
@@ -73,7 +77,29 @@ public final class PositionVector {
 		return positionVectors[RandomEngine.getNextInt(WorldConstants.WORLD_Z)][RandomEngine.getNextInt(WorldConstants.WORLD_Y)][RandomEngine.getNextInt(WorldConstants.WORLD_X)];
 	}
 	
-	
+	public LinkedList<PositionVector> getAdjacentPositions() {
+		/* Optimize away having to create this list every single time, perhaps shifting to a graph structure */
+		LinkedList<PositionVector> adj = new LinkedList<PositionVector>();
+		if (z > 0) {
+			adj.add(positionVectors[z - 1][y][x]);
+		}
+		if (z < WorldConstants.WORLD_Z - 1) {
+			adj.add(positionVectors[z + 1][y][x]);
+		}
+		if (y > 0) {
+			adj.add(positionVectors[z][y - 1][x]);
+		}
+		if (y < WorldConstants.WORLD_Y - 1) {
+			adj.add(positionVectors[z][y + 1][x]);
+		}
+		if (x > 0) {
+			adj.add(positionVectors[z][y][x - 1]);
+		}
+		if (x < WorldConstants.WORLD_X - 1) {
+			adj.add(positionVectors[z][y][x + 1]);
+		}
+		return adj;
+	}
 	
 	public int getX() { return x; }
 	public int getY() { return y; }
